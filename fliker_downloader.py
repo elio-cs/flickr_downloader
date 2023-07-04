@@ -10,25 +10,19 @@ def save_list_to_csv(data, filename):
         for row in data:
             writer.writerow([row])
             
-# 设置 Flickr API 密钥
-api_key = '333e75d82fbaec0f8896b9f1596d843d'
-api_secret = '6a0dd45f41af5628'
+# Set Flickr API key
+api_key = 'Your Key'
+api_secret = 'Your Secret'
 
-# 创建 Flickr API 实例
 flickr = flickrapi.FlickrAPI(api_key, api_secret, format='parsed-json')
 
-# 设置搜索参数
-keyword = "food"  # 替换为你想要搜索的关键词
+keyword = "food"  # Replace with the keyword you want to search for
 
-
-# 调用 Flickr API 进行搜索
-for page in range(51,100):
+for page in range(1,50):
     photos = flickr.photos.search(text=keyword, per_page=500, page = page, sort='relevance')
-    # 遍历搜索结果
     urls = []
     count = 0
     for photo in photos['photos']['photo']:
-        # 获取图片信息
         photo_id = photo['id']
         photo_secret = photo['secret']
         
